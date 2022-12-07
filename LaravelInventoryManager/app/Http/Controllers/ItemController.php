@@ -26,7 +26,7 @@ class ItemController extends Controller
         //checks the form submission for errors, insert into database or show errors
         $rules = [
             'item' => 'required|max:255|unique:items,item_title',
-            'description' => 'required|min:255',
+            'description' => 'required|min:3',
             'price' => 'required|integer',
             'quantity' => 'required|integer',
             'sku' => 'required|max:10|unique:items,item_sku',
@@ -56,8 +56,8 @@ class ItemController extends Controller
     public function edit($id)
     {
         //show a web form to edit the item with values pre-filled that corresponds to the $id
-        $item = \App\Models\categories::find($id);
-        return view('categories.edit')->with('item', $item);
+        $item = \App\Models\items::find($id);
+        return view('items.edit')->with('item', $item);
 
     }
 
@@ -65,12 +65,23 @@ class ItemController extends Controller
     {
         //checks the form submission for errors, updates database or show errors
         $rules = [
-            'item' => 'required|max:255|unique:items,item_title,'.$id
+            'item' => 'required|max:255|unique:items,item_title,'.$id,
+            'description' => 'required|min:3',
+            'price' => 'required|integer',
+            'quantity' => 'required|integer',
+            'sku' => 'required|max:10|unique:items,item_sku',
+            'picture' => 'required|max:255'
         ];
         $validator = $this->validate($request, $rules);
 
         $item = \App\Models\items::find($id);
         $item->item_title = $request->item;
+        $item->item_description = $request->description;
+        $item->item_price = $request->price;
+        $item->item_quantity = $request->quantity;
+        $item->item_sku = $request->sku;
+        $item->item_picture = $request->picture;
+        $item->categories_id = $request->categories_id;
         $item->save();
 
         Session::flash('success', 'Item has been updated!');
