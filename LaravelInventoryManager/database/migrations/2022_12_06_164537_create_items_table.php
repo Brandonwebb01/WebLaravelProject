@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('item_title');
-            $table->text('item_description')->nullable();
+            $table->string('item_title')-> unique();
+            $table->text('item_description');
             $table->integer('item_price');
-            $table->integer('item_quantity')->nullable();
+            $table->integer('item_quantity');
             $table->string('item_sku', 10);
-            $table->text('item_picture');
+            $table->text('item_picture')->nullable();
             $table->bigInteger('categories_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();

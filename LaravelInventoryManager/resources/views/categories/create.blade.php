@@ -9,9 +9,9 @@
 
                     <div class="card-body">
                         {!! Form::open(['route' => 'categories.store', 'method' => 'post']) !!}
-                        {{ Form::label('categories', 'Add categories') }}
-                        {{ Form::text('categories', null, ['class' => 'form-control', 'style' => '', 'id' => 'categories']) }}
-                        {{ Form::submit('Add categories', ['class' => 'btn btn-primary btn-lg btn-block', 'style' => 'margin-top:20px']) }}
+                        {{ Form::label('category', 'Add category') }}
+                        {{ Form::text('category', null, ['class' => 'form-control', 'style' => '', 'id' => 'category']) }}
+                        {{ Form::submit('Add category', ['class' => 'btn btn-primary btn-lg btn-block', 'style' => 'margin-top:20px']) }}
                         {!! Form::close() !!}
                     </div>
 

@@ -12,6 +12,7 @@ class items extends Model
     use softDeletes;
 
     protected $table = 'items';
+    protected $fillable = ['item_title', 'item_description', 'item_price', 'item_quantity', 'item_sku', 'item_picture', 'categories_id'];
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
 
     public function category()
